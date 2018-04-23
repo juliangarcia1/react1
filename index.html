@@ -20,65 +20,33 @@
 <div id="react-container"></div>
 
 <script type="text/babel">
-    // ********** 1.-
-    // ReactDOM.render(
-    //     React.createElement('h1', null, 'Hello World'),
-    //     <Banner/>,
-    //     document.getElementById('react-container')
-    //
-    // );
-    // ********** 2.-
-    // class Hello extends React.Component{
-    //     render() {
-    //         return (
-    //             <div id="fancy">
-    //                 <h1 className="heading">Hello World</h1>
-    //             </div>
-    //         )
-    //     }
-    // }
-    // ReactDOM.render(
-    //     <Banner/>,
-    //     document.getElementById('react-container')
-    //
-    // );
-    // ********** 3.-
-    // const Banner = () => (
-    //
-    //     <div id="fancy">
-    //         <h1 className="heading">Welcome to React</h1>
-    //         <p>Have Fun!</p>
-    //     </div>
-    //
-    // );
-    // ReactDOM.render(
-    //     // React.createElement('h1', null, 'Hello World'),
-    //     <Banner/>,
-    //     document.getElementById('react-container')
-    //
-    // );
-    // 4.-
-    // class Hello extends React.Component {
-    //     render() {
-    //         return  (
-    //             <div>
-    //                 <h1> Hello {this.props.firstName}</h1>
-    //                 <p>Learning React version {this.props.version}</p>
-    //             </div>
-    //         )
-    //     }
-    // }
-    // const HelloStateless =({firstName}) => <h1>Hello {firstName}</h1>
-    // ReactDOM.render(
-    //     <HelloStateless firstName="Bill" version={16}/>,
-    //     document.getElementById('react-container')
-    // );
-    // 5.-
     class CheckBox extends React.Component {
+        constructor(props) {
+            super(props)
+            this.state = {
+                checked :false
+            }
+            this.handleCheck = this.handleCheck.bind(this)
+
+
+        }
+        handleCheck(){
+            this.setState({
+                checked:!this.state.checked
+            })
+        }
         render() {
+            var msg
+            if(this.state.checked) {
+                msg = "checked"
+            }
+            else {
+                msg = "not checked"
+            }
             return (
                 <div>
-                    <input type="checkbox"/>
+                    <input type="checkbox" onChange={this.handleCheck}/>
+                    <p>This box is {msg}</p>
                 </div>
             )
         }
